@@ -1,132 +1,85 @@
-.sidebarOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.4);
+.sidebarContainer {
+    width: 100%;
+    height: 100%;
+    padding: 0 .5rem;
+
+    overflow: hidden;
+
+    grid-area: sidebar;
+    font-size: 1.1rem;
+
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+
+    background: var(--secondary-background);
+
+    display: grid;
+    grid-template-rows: 4rem 1fr auto;
+    gap: 0;
+    grid-template-areas:
+        "toggle"
+        "top"
+        "bottom";
 }
 
-.sidebarContent {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 45vw;
-  height: 100%;
-  overflow: auto;
-  z-index: 999;
-  background-color: white;
+.sidebarContainer > .toggleButton {
+    grid-area: toggle;
+
+    display: flex;
+    align-items: center;
 }
 
-@media screen and (max-width: 800px) {
-  .sidebarContent {
-    width: 80vw;
-  }
+.sidebarContainer > .top {
+    width: 100%;
+    grid-area: top;
+    overflow: hidden;
 }
 
-button {
-  background-color: transparent;
-  border: transparent;
-  border-radius: 50%;
+.sidebarContainer > .bottom {
+    grid-area: bottom;
 }
 
-button:hover {
-  background-color: rgba(0, 0, 0, 0.12);
+.sidebarContainer > div > a,
+.sidebarContainer > div > .button {
+    width: 100%;
+    height: 2.5rem;
+    padding: .2rem;
+    font-size: 1.3rem;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background: none;
+
+    border: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .2rem;
 }
 
-.navButton {
-  position: fixed;
-  top: 8px;
-  left: 8px;
-  width: 64px;
-  height: 64px;
-  padding: 8px;
-  z-index: 999;
-  background-color: rgba(255, 255, 255, 0.8);
+.sidebarContainer.open a:hover {
+    /*background: var(--primary);*/
 }
 
-.navIcon {
-  content: url(../../assets/icons/hamburger.svg);
-  width: 48px;
-  height: 48px;
+.sidebarContainer > div > a > .icon,
+.sidebarContainer > div > .button > .icon {
+    flex-shrink: 0;
+
+    aspect-ratio: 1;
+    height: 2rem;
 }
 
-.xButton {
-  position: relative;
-  top: 8px;
-  left: 8px;
-  width: 64px;
-  height: 64px;
-  padding: 8px;
-  z-index: 999;
+.sidebarContainer > div > a > p,
+.sidebarContainer > div > .button > p {
+    white-space: nowrap;
+
+    width: 100%;
+    overflow: hidden;
 }
 
-.xIcon {
-  content: url(../../assets/icons/cross-mark.svg);
-  width: 48px;
-  height: 48px;
-}
-
-@media screen and (max-width: 480px) {
-  .navButton {
-    width: 32px;
-    height: 32px;
-    padding: 4px;
-  }
-
-  .navIcon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .xButton {
-    width: 32px;
-    height: 32px;
-    padding: 4px;
-  }
-
-  .xIcon {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.navGrid {
-  margin-top: 20px;
-  width: auto;
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row: auto;
-}
-
-.gridItem a {
-  display: flex;
-  color: #000000;
-  background-color: #e1e1e1;
-  text-align: left;
-  align-items: center;
-  text-decoration: none;
-  margin: 1px;
-  padding-left: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: 15px;
-}
-
-@media screen and (max-width: 800px) {
-  .gridItem a {
-    margin-left: 30px;
-  }
-}
-
-.gridItem a:hover {
-  background-color: #cccccc;
-}
-
-.sidebarTextContainer > div {
-  text-align: right;
-  white-space: nowrap;
-  margin: 5px;
+.sidebarContainer.open > div > a > p,
+.sidebarContainer.open > div > .button > p {
+    /*text-overflow: ellipsis;*/
 }

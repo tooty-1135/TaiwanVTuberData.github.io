@@ -1,0 +1,38 @@
+.navbarContainer {
+  width: 100%;
+
+  position: relative;
+
+  grid-area: nav;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+
+  background: var(--secondary-background);
+
+  padding: 0 .8rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  gap: .2rem;
+}
+
+.navLinks > a {
+  padding: .5rem 1rem;
+}
+
+.navLinks > a.active {
+  background: var(--secondary);
+  border-radius: var(--border-radius);
+}

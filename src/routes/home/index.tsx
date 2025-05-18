@@ -63,13 +63,15 @@ const HomePage: FunctionalComponent<HomePageProps> = (props: HomePageProps) => {
         <Text id="header.title">Taiwan VTuber Data</Text>
         {GetCurrentNationalitySpan()}
       </h1>
-      {ENABLE_ADVERTISEMENT === true ? <Advertisement /> : <></>}
+      {ENABLE_ADVERTISEMENT ? <Advertisement /> : <></>}
       <LivestreamsSection />
       <div class={style.tableGrid}>
         <div class={style.tableItem}>
+          {/*熱門 VTuber 前 10*/}
           <TrendingVTubersTable />
         </div>
         <div class={style.tableItem}>
+          {/*近 7 日出道 VTuber*/}
           <DebutVTubersTable />
         </div>
         <div class={style.tableItem}>

@@ -34,11 +34,13 @@ import {
 import { validI18n, validI18nArray } from '../types/LanguageOptions';
 import { getCookie, setCookie } from '../utils/CookieUtils';
 import { GetPlaceholderRoute, GetRoute } from '../utils/TypeSafeRouting';
+import NavBar from './NavBar';
 import ReloadPrompt from './ReloadModal';
 import ScrollToTopBottom from './ScrollToTopBottom';
 import Sidebar from './Sidebar';
 import VTuberProfileModal from './VTuberProfileModal';
 import VideoModal from './VideoModal';
+import './globals.css';
 import { IntlProvider } from 'preact-i18n';
 import { Route, Router } from 'preact-router';
 import { useEffect, useState } from 'preact/hooks';
@@ -57,6 +59,7 @@ export function App() {
   const [apiSource, setApiSource] = useState<ApiSourceOption>(
     ApiSourceService.getApiSourceOption(),
   );
+
   function setApiSourceOption(apiSourceOption: ApiSourceOption) {
     setApiSource(apiSourceOption);
     ApiSourceService.setApiSourceOption(apiSourceOption);
@@ -72,7 +75,7 @@ export function App() {
 
   useEffect(() => {
     // REMOVE: remove the check when the feature is stable
-    if (ApiSourceService.getIsAutomaticSet() === false) {
+    if (!ApiSourceService.getIsAutomaticSet()) {
       ApiSourceService.setApiSourceOption('automatic');
     }
 
@@ -203,6 +206,7 @@ export function App() {
   return (
     <div id="preact_root">
       <IntlProvider definition={definition}>
+        <NavBar />
         {isApiBootstrapped ? (
           <>
             <Sidebar
@@ -213,11 +217,13 @@ export function App() {
               apiSource={apiSource}
               setApiSource={setApiSourceOption}
             />
-            <ReloadPrompt />
-            <ScrollToTopBottom />
-            <VTuberProfileModal />
-            <VideoModal />
-            <ValidRouter />
+            <div id={"main"}>
+              <ReloadPrompt />
+              <ScrollToTopBottom />
+              <VTuberProfileModal />
+              <VideoModal />
+              <ValidRouter />
+            </div>
           </>
         ) : (
           <span>Loading...</span>
